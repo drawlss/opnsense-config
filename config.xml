@@ -349,8 +349,8 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
   </ntpd>
   <revision>
     <username>root@192.168.10.110</username>
-    <description>/api/ids/settings/toggle_ruleset/emerging-info.rules/0 made changes</description>
-    <time>1777170012.16</time>
+    <description>/api/firewall/d_nat/add_rule/ made changes</description>
+    <time>1777220107.95</time>
   </revision>
   <OPNsense>
     <wireguard>
@@ -7154,11 +7154,11 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         <not>0</not>
       </source>
       <destination>
-        <network>192.168.10.111</network>
+        <network>wanip</network>
         <port>2222</port>
         <not>0</not>
       </destination>
-      <target>192.168.1.111</target>
+      <target>192.168.10.111</target>
       <local-port>2222</local-port>
       <poolopts/>
       <log>0</log>
@@ -7168,7 +7168,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       <tagged/>
       <nosync>0</nosync>
       <natreflection/>
-      <pass/>
+      <pass>pass</pass>
       <associated-rule-id/>
       <created>
         <username>root</username>
@@ -7177,7 +7177,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       </created>
       <updated>
         <username>root</username>
-        <time>1777144402.12</time>
+        <time>1777219629.53</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>
@@ -7194,7 +7194,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         <not>0</not>
       </source>
       <destination>
-        <network>192.168.10.111</network>
+        <network>wanip</network>
         <port>2223</port>
         <not>0</not>
       </destination>
@@ -7208,7 +7208,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       <tagged/>
       <nosync>0</nosync>
       <natreflection/>
-      <pass/>
+      <pass>pass</pass>
       <associated-rule-id/>
       <created>
         <username>root</username>
@@ -7217,7 +7217,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       </created>
       <updated>
         <username>root</username>
-        <time>1777144606.68</time>
+        <time>1777219633.17</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>
@@ -7234,7 +7234,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         <not>0</not>
       </source>
       <destination>
-        <network>192.168.10.111</network>
+        <network>wanip</network>
         <port>8000</port>
         <not>0</not>
       </destination>
@@ -7248,7 +7248,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       <tagged/>
       <nosync>0</nosync>
       <natreflection/>
-      <pass/>
+      <pass>pass</pass>
       <associated-rule-id/>
       <created>
         <username>root</username>
@@ -7257,7 +7257,87 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       </created>
       <updated>
         <username>root</username>
-        <time>1777144714.78</time>
+        <time>1777219637.03</time>
+        <description>/api/api.php made changes</description>
+      </updated>
+    </rule>
+    <rule uuid="27de7f67-296a-493b-8c44-45b243dcca6a">
+      <sequence>500</sequence>
+      <disabled>0</disabled>
+      <nordr>0</nordr>
+      <interface>wan</interface>
+      <ipprotocol/>
+      <protocol>tcp</protocol>
+      <source>
+        <network>any</network>
+        <port/>
+        <not>0</not>
+      </source>
+      <destination>
+        <network>wanip</network>
+        <port>22</port>
+        <not>0</not>
+      </destination>
+      <target>192.168.10.111</target>
+      <local-port>2222</local-port>
+      <poolopts/>
+      <log>0</log>
+      <category/>
+      <descr>DShield SSH catch-all(22-2222)</descr>
+      <tag/>
+      <tagged/>
+      <nosync>0</nosync>
+      <natreflection/>
+      <pass>pass</pass>
+      <associated-rule-id/>
+      <created>
+        <username>root</username>
+        <time>1777219963.44</time>
+        <description>/api/api.php made changes</description>
+      </created>
+      <updated>
+        <username>root</username>
+        <time>1777219963.44</time>
+        <description>/api/api.php made changes</description>
+      </updated>
+    </rule>
+    <rule uuid="4b7dc2d2-4704-4f0b-89c1-bfd70749a5d0">
+      <sequence>600</sequence>
+      <disabled>0</disabled>
+      <nordr>0</nordr>
+      <interface>wan</interface>
+      <ipprotocol/>
+      <protocol>tcp</protocol>
+      <source>
+        <network>any</network>
+        <port/>
+        <not>0</not>
+      </source>
+      <destination>
+        <network>wanip</network>
+        <port>23</port>
+        <not>0</not>
+      </destination>
+      <target>192.168.10.111</target>
+      <local-port>2223</local-port>
+      <poolopts/>
+      <log>0</log>
+      <category/>
+      <descr>DShield  Telnet catch-all (23-2223)</descr>
+      <tag/>
+      <tagged/>
+      <nosync>0</nosync>
+      <natreflection/>
+      <pass>pass</pass>
+      <associated-rule-id/>
+      <created>
+        <username>root</username>
+        <time>1777220107.95</time>
+        <description>/api/api.php made changes</description>
+      </created>
+      <updated>
+        <username>root</username>
+        <time>1777220107.95</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>

@@ -132,6 +132,11 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       <graceperiod>30</graceperiod>
       <passwordFirst/>
     </authserver>
+    <maximumstates/>
+    <maximumfrags/>
+    <aliasesresolveinterval/>
+    <maximumtableentries/>
+    <pfdebug>urgent</pfdebug>
   </system>
   <interfaces>
     <lo0>
@@ -315,31 +320,6 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         <any/>
       </destination>
     </rule>
-    <rule uuid="e3a7d4bc-b376-40a8-9635-b46d407c87f3">
-      <type>pass</type>
-      <interface>wireguard</interface>
-      <ipprotocol>inet46</ipprotocol>
-      <statetype>keep state</statetype>
-      <descr>Allow all WG</descr>
-      <direction>in</direction>
-      <quick>1</quick>
-      <source>
-        <any>1</any>
-      </source>
-      <destination>
-        <any>1</any>
-      </destination>
-      <updated>
-        <username>root@192.168.10.110</username>
-        <time>1777076676.33</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </updated>
-      <created>
-        <username>root@192.168.10.110</username>
-        <time>1777076676.33</time>
-        <description>/firewall_rules_edit.php made changes</description>
-      </created>
-    </rule>
   </filter>
   <rrd>
     <enable/>
@@ -349,8 +329,8 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
   </ntpd>
   <revision>
     <username>root@192.168.10.110</username>
-    <description>/api/firewall/d_nat/add_rule/ made changes</description>
-    <time>1777220107.95</time>
+    <description>/api/ids/settings/set made changes</description>
+    <time>1777603324.55</time>
   </revision>
   <OPNsense>
     <wireguard>
@@ -532,7 +512,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         <interface/>
       </general>
     </Hostwatch>
-    <IDS version="1.1.2" persisted_at="1777170012.15" description="Intrusion detection">
+    <IDS version="1.1.2" persisted_at="1777603324.55" description="Intrusion detection">
       <rules>
         <rule uuid="3929e8bf-4367-41cb-81d7-c9b19c0a2b8d">
           <sid>2000005</sid>
@@ -6542,11 +6522,11 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       </files>
       <fileTags/>
       <general>
-        <enabled>1</enabled>
+        <enabled>0</enabled>
         <mode>pcap</mode>
         <divert_listeners>1</divert_listeners>
         <promisc>1</promisc>
-        <interfaces>opt2,wan</interfaces>
+        <interfaces>wan</interfaces>
         <homenet>192.168.0.0/16,10.0.0.0/8,172.16.0.0/12</homenet>
         <defaultPacketSize/>
         <UpdateCron>1a37b5b6-1647-4351-ab01-15c332e1ae1e</UpdateCron>
@@ -6903,7 +6883,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       <general>
         <enabled>1</enabled>
         <port>53</port>
-        <stats>0</stats>
+        <stats>1</stats>
         <active_interface/>
         <dnssec>0</dnssec>
         <dns64>0</dns64>
@@ -6992,7 +6972,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
         </subnets>
       </settings>
     </tailscale>
-    <WazuhAgent version="0.0.0" persisted_at="1777132410.09" description="Wazuh Agent">
+    <WazuhAgent version="1.0.3" persisted_at="1777602495.00" description="Wazuh Agent">
       <general>
         <enabled>1</enabled>
         <server_address>192.168.10.110</server_address>
@@ -7342,5 +7322,7 @@ cqp51NF1J73FjaReFNUnAAAAFnJvb3RAT1BOc2Vuc2UuaW50ZXJuYWwBAgMEBQYH&#13;
       </updated>
     </rule>
   </nat>
-  <syslog/>
+  <syslog>
+    <nologdefaultpass>1</nologdefaultpass>
+  </syslog>
 </opnsense>

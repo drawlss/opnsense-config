@@ -130,8 +130,16 @@
       <blockpriv>1</blockpriv>
       <descr>WAN</descr>
     </wan>
+    <opt1>
+      <if>vlan01</if>
+      <descr>honeypot</descr>
+      <enable>1</enable>
+      <spoofmac/>
+      <ipaddr>192.168.20.1</ipaddr>
+      <subnet>24</subnet>
+    </opt1>
   </interfaces>
-  <dnsmasq version="1.0.9" persisted_at="1777666446.03" description="Dnsmasq DNS and DHCP">
+  <dnsmasq version="1.0.9" persisted_at="1778113749.28" description="Dnsmasq DNS and DHCP">
     <enable>1</enable>
     <regdhcp>0</regdhcp>
     <regdhcpstatic>0</regdhcpstatic>
@@ -145,7 +153,7 @@
     <strictbind>0</strictbind>
     <dnssec>0</dnssec>
     <regdhcpdomain/>
-    <interface>lan</interface>
+    <interface>opt1,lan</interface>
     <port>53053</port>
     <dns_forward_max/>
     <cache_size/>
@@ -209,9 +217,29 @@
       <ra_router_lifetime/>
       <description/>
     </dhcp_ranges>
+    <dhcp_ranges uuid="51059f64-eeea-4aa2-a9fb-f85a5556c227">
+      <interface>opt1</interface>
+      <set_tag/>
+      <start_addr>192.168.20.100</start_addr>
+      <end_addr>192.168.20.150</end_addr>
+      <subnet_mask/>
+      <constructor/>
+      <mode/>
+      <prefix_len/>
+      <lease_time/>
+      <domain_type>range</domain_type>
+      <domain/>
+      <nosync>0</nosync>
+      <ra_mode/>
+      <ra_priority/>
+      <ra_mtu/>
+      <ra_interval/>
+      <ra_router_lifetime/>
+      <description/>
+    </dhcp_ranges>
   </dnsmasq>
   <filter>
-    <rule>
+    <rule uuid="2af7888d-4d9e-4e25-ba60-7842bb90c078">
       <type>pass</type>
       <ipprotocol>inet</ipprotocol>
       <descr>Default allow LAN to any rule</descr>
@@ -223,7 +251,7 @@
         <any/>
       </destination>
     </rule>
-    <rule>
+    <rule uuid="bf38d8f1-badb-4ac6-98c2-232eb7965f05">
       <type>pass</type>
       <ipprotocol>inet6</ipprotocol>
       <descr>Default allow LAN IPv6 to any rule</descr>
@@ -235,6 +263,110 @@
         <any/>
       </destination>
     </rule>
+    <rule uuid="1b428921-218f-419f-891f-f5f57522e271">
+      <type>pass</type>
+      <interface>opt1</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <descr>Allow honeypot  to wazuh manager</descr>
+      <direction>in</direction>
+      <quick>1</quick>
+      <protocol>tcp</protocol>
+      <source>
+        <network>opt1</network>
+      </source>
+      <destination>
+        <address>192.168.10.110</address>
+        <port>1514-1515</port>
+      </destination>
+      <updated>
+        <username>root@192.168.10.110</username>
+        <time>1778113967.51</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>root@192.168.10.110</username>
+        <time>1778113967.51</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
+    <rule uuid="b117e636-67f5-444b-959a-c99e7659e118">
+      <type>pass</type>
+      <interface>opt1</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <descr>Allow honeypot DNS to OPNsense</descr>
+      <direction>in</direction>
+      <quick>1</quick>
+      <protocol>tcp/udp</protocol>
+      <source>
+        <network>opt1</network>
+      </source>
+      <destination>
+        <network>(self)</network>
+        <port>53</port>
+      </destination>
+      <updated>
+        <username>root@192.168.10.110</username>
+        <time>1778114038.96</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>root@192.168.10.110</username>
+        <time>1778114038.96</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
+    <rule uuid="53848ffa-7a1b-42b8-891f-16c4e2fa2914">
+      <type>block</type>
+      <interface>opt1</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <descr>Block honeypot to LAN</descr>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <network>opt1</network>
+      </source>
+      <destination>
+        <network>lan</network>
+      </destination>
+      <updated>
+        <username>root@192.168.10.110</username>
+        <time>1778114088.35</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>root@192.168.10.110</username>
+        <time>1778114088.35</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
+    <rule uuid="ed7df30c-4188-4c14-8706-77f9e6bc6e31">
+      <type>pass</type>
+      <interface>opt1</interface>
+      <ipprotocol>inet</ipprotocol>
+      <statetype>keep state</statetype>
+      <descr>Allow honeypot to internet</descr>
+      <direction>in</direction>
+      <quick>1</quick>
+      <source>
+        <network>opt1</network>
+      </source>
+      <destination>
+        <any>1</any>
+      </destination>
+      <updated>
+        <username>root@192.168.10.110</username>
+        <time>1778114116.30</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </updated>
+      <created>
+        <username>root@192.168.10.110</username>
+        <time>1778114116.30</time>
+        <description>/firewall_rules_edit.php made changes</description>
+      </created>
+    </rule>
   </filter>
   <rrd>
     <enable/>
@@ -244,8 +376,8 @@
   </ntpd>
   <revision>
     <username>root@192.168.10.110</username>
-    <description>/api/firewall/d_nat/add_rule/ made changes</description>
-    <time>1777688320.19</time>
+    <description>/api/firewall/d_nat/set_rule/8646459f-7f12-4d44-96d4-260a3cb55a0d made changes</description>
+    <time>1778116256.82</time>
   </revision>
   <OPNsense>
     <wireguard>
@@ -885,8 +1017,15 @@
   <virtualip version="1.0.1" persisted_at="1776963002.64" description="Virtual IP configuration">
     <vip/>
   </virtualip>
-  <vlans version="1.0.0" persisted_at="1776963002.96" description="VLAN configuration">
-    <vlan/>
+  <vlans version="1.0.0" persisted_at="1778113210.63" description="VLAN configuration">
+    <vlan uuid="38bccb9d-e590-4fa8-a9b2-42145f2f9f6b">
+      <if>igb1</if>
+      <tag>20</tag>
+      <pcp>0</pcp>
+      <proto/>
+      <descr>honeypot_vlan</descr>
+      <vlanif>vlan01</vlanif>
+    </vlan>
   </vlans>
   <staticroutes version="1.0.0" persisted_at="1776963003.00" description="Static routes">
     <route/>
@@ -927,7 +1066,7 @@
         <port>2222</port>
         <not>0</not>
       </destination>
-      <target>192.168.10.111</target>
+      <target>192.168.20.142</target>
       <local-port>2222</local-port>
       <poolopts/>
       <log>0</log>
@@ -946,7 +1085,7 @@
       </created>
       <updated>
         <username>root</username>
-        <time>1777683927.17</time>
+        <time>1778116238.57</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>
@@ -967,7 +1106,7 @@
         <port>2223</port>
         <not>0</not>
       </destination>
-      <target>192.168.10.111</target>
+      <target>192.168.20.142</target>
       <local-port>2223</local-port>
       <poolopts/>
       <log>0</log>
@@ -986,7 +1125,7 @@
       </created>
       <updated>
         <username>root</username>
-        <time>1777688134.87</time>
+        <time>1778116248.61</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>
@@ -1007,7 +1146,7 @@
         <port>8000</port>
         <not>0</not>
       </destination>
-      <target>192.168.10.111</target>
+      <target>192.168.20.142</target>
       <local-port>8000</local-port>
       <poolopts/>
       <log>0</log>
@@ -1026,7 +1165,7 @@
       </created>
       <updated>
         <username>root</username>
-        <time>1777688198.86</time>
+        <time>1778116256.82</time>
         <description>/api/api.php made changes</description>
       </updated>
     </rule>
